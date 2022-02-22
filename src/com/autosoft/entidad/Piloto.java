@@ -1,13 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.autosoft.entidad;
 
-/**
- *
- * @author kfabianparedes
- */
 public class Piloto {
     private String piloto_id;
     private String nombre;
@@ -42,7 +34,6 @@ public class Piloto {
     public void setTiempodeexperiencia(int tiempodeexperiencia) {
         this.tiempodeexperiencia = tiempodeexperiencia;
     }
-
 
     // Método de clase - Reglas de negocio
 

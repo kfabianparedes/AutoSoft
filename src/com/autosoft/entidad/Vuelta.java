@@ -1,7 +1,6 @@
 package com.autosoft.entidad;
 
 public class Vuelta {
-
     private int numero;
     private float velocidad;
     private float tiempo;

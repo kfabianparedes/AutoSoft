@@ -1,8 +1,6 @@
 package com.autosoft.entidad;
 
 public class Auto {
-
-
     private String auto_id;
     private String modelo;
     private int maximavelocidad;
