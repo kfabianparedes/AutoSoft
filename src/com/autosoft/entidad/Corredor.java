@@ -9,13 +9,11 @@ public class Corredor {
     private Piloto piloto;
     private Auto auto;
     private List<Vuelta> listaDeVueltas;
-    private Carrera carrera;
 
     public Corredor(String corredor_id, Piloto piloto, Auto auto, Carrera carrera) {
         this.corredor_id = corredor_id;
         this.piloto = piloto;
         this.auto = auto;
-        this.carrera = carrera;
         listaDeVueltas = new ArrayList<>();
     }
 
@@ -73,35 +71,62 @@ public class Corredor {
     }
 
     public float calcularTiempoPromedioDeVuelta(){
-        return 0;
+        return calcularTiempoDeCarrera() / listaDeVueltas.size();
     }
 
     private float calcularSumatoriaDeVarianza(){
-        return 0;
+        float sumatoriaDeVarianza = 0;
+        float tiempoPromedioDeVuelta = calcularTiempoPromedioDeVuelta();
+        for ( Vuelta vuelta : listaDeVueltas){
+            sumatoriaDeVarianza += Math.pow(vuelta.getTiempo() - tiempoPromedioDeVuelta , 2);
+        }
+        return sumatoriaDeVarianza;
     }
 
     public double calcularVarianzaDelTiempo(){
-        return 0;
+        return calcularSumatoriaDeVarianza() / listaDeVueltas.size();
     }
 
     public double calcularDesviacionEstandarDelTiempo(){
-        return 0;
+        return Math.sqrt(calcularVarianzaDelTiempo());
     }
 
-    public Vuelta obtenerVueltaMasRapida(){
-        return  null;
+    public Vuelta obtenerVueltaMasRapida() {
+        Vuelta vueltaMasRapida = null;
+        if(!listaDeVueltas.isEmpty()){
+            vueltaMasRapida = listaDeVueltas.get(0);
+            for( Vuelta vuelta: listaDeVueltas){
+                if(vuelta.getTiempo() < vueltaMasRapida.getTiempo()){
+                    vueltaMasRapida = vuelta;
+                }
+            }
+        }
+        return  vueltaMasRapida;
     }
 
     public Vuelta obtenerVueltaMasLenta(){
-        return null;
+        Vuelta vueltaMasLenta = null;
+        if(!listaDeVueltas.isEmpty()){
+            vueltaMasLenta = listaDeVueltas.get(0);
+            for( Vuelta vuelta: listaDeVueltas){
+                if(vuelta.getTiempo() > vueltaMasLenta.getTiempo()){
+                    vueltaMasLenta = vuelta;
+                }
+            }
+        }
+        return  vueltaMasLenta;
     }
 
-    private float calcularSumatorioDeVelocidadPorVuelta(){
-        return 0;
+    private float calcularSumatoriaDeVelocidadPorVuelta(){
+        float sumatoriaDeVelocidadPorVuelta = 0;
+        for(Vuelta vuelta : listaDeVueltas){
+            sumatoriaDeVelocidadPorVuelta += vuelta.getVelocidad();
+        }
+        return sumatoriaDeVelocidadPorVuelta;
     }
 
     public float calcularVelocidadPromedioDeVuelta(){
-        return 0;
+        return calcularSumatoriaDeVelocidadPorVuelta() / listaDeVueltas.size();
     }
 
     public boolean eresGanador(){
