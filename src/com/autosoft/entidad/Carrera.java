@@ -165,6 +165,43 @@ public class Carrera {
         return   corredorGanador;
     }
 
+    public Corredor buscarCorredor(String corredor_id) {
+        Corredor corredorBuscado = null;
+        for (Corredor corredor : listaDeCorredores) {
+            if (corredor.getCorredor_id().equals(corredor_id)) {
+                corredorBuscado = corredor;
+                break;
+            }
+        }
+        return corredorBuscado;
+    }
 
+    private float calcularSumatoriaDeTiemposPorCorredor() {
+        float sumatoriaDeTiemposPorCorredor = 0;
+        for (Corredor corredor : listaDeCorredores) {
+            sumatoriaDeTiemposPorCorredor += corredor.calcularTiempoDeCarrera();
+        }
+        return sumatoriaDeTiemposPorCorredor;
+    }
 
+    public float calcularTiempoPromedio() {
+        return calcularSumatoriaDeTiemposPorCorredor() / listaDeCorredores.size();
+    }
+
+    private float calcularSumatoriaDeVarianza() {
+        float sumatoriaDeVarianza = 0;
+        float tiempoPromedio = calcularTiempoPromedio();
+        for (Corredor corredor : listaDeCorredores) {
+            sumatoriaDeVarianza += Math.pow(corredor.calcularTiempoDeCarrera() - tiempoPromedio, 2);
+        }
+        return sumatoriaDeVarianza;
+    }
+
+    public double calcularVarianzaDelTiempo() {
+        return calcularSumatoriaDeVarianza() / listaDeCorredores.size();
+    }
+
+    public double calcularDesviacionEstandarDelTiempo() {
+        return Math.sqrt(calcularVarianzaDelTiempo());
+    }
 }

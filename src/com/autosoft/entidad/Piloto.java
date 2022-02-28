@@ -50,4 +50,12 @@ public class Piloto {
         }
         return probabildadDeExito;
     }
+    
+    public Object[] obtenerDatos(){
+        Object[] arreglo = new Object[3];
+        arreglo[0] = piloto_id;
+        arreglo[1] = nombre;
+        arreglo[2] = tiempodeexperiencia;
+        return arreglo;
+    }
 }

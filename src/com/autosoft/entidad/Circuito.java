@@ -51,4 +51,14 @@ public class Circuito {
     public float calcularLongitudEnKilometros(){
         return longitudEnMetros / 1000f;
     }
+    
+    public Object[] obtenerDatos(){
+        Object[] arreglo = new Object[3];
+        arreglo[0] = circuito_id;
+        arreglo[1] = nombre;
+        arreglo[2] = longitudEnMetros + " mt";
+        arreglo[3] = dificultad;
+        return arreglo;
+    }
+    
 }

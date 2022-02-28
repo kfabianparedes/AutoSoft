@@ -35,6 +35,14 @@ public class Auto {
         this.maximavelocidad = maximavelocidad;
     }
     
+    public Object[] obtenerDatos(){
+        Object[] arreglo = new Object[3];
+        arreglo[0] = auto_id;
+        arreglo[1] = modelo;
+        arreglo[2] = maximavelocidad + " Km/h";
+        return arreglo;
+    }
+    
     public float calcularVelocidad(){
         return (maximavelocidad - (float)((maximavelocidad / 2 ) * Math.random()));
     }
